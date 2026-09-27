@@ -1,0 +1,12 @@
+{
+  "description": "Loan decisions for a brand-new customer (available funds = default initial balance $515.50, processor = Available Funds, threshold 20%). Approved when funds / amount >= 0.20 and down payment <= funds.",
+  "cases": [
+    { "id": "LOAN-01", "amount": 100, "downPayment": 10, "approved": true, "message": null },
+    { "id": "LOAN-02", "amount": 2500, "downPayment": 100, "approved": true, "message": null },
+    { "id": "LOAN-03", "amount": 2577, "downPayment": 0, "approved": true, "message": null },
+    { "id": "LOAN-04", "amount": 2600, "downPayment": 0, "approved": false, "message": "error.insufficient.funds" },
+    { "id": "LOAN-05", "amount": 100000, "downPayment": 50, "approved": false, "message": "error.insufficient.funds" },
+    { "id": "LOAN-06", "amount": 500, "downPayment": 515.5, "approved": true, "message": null },
+    { "id": "LOAN-07", "amount": 500, "downPayment": 515.51, "approved": false, "message": "error.insufficient.funds.for.down.payment" }
+  ]
+}

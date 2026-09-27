@@ -1,0 +1,16 @@
+{
+  "description": "Each case overrides one or more bill pay fields; every listed validation id must become visible.",
+  "cases": [
+    { "id": "BP-01", "override": { "name": "" }, "visible": ["name"] },
+    { "id": "BP-02", "override": { "street": "" }, "visible": ["address"] },
+    { "id": "BP-03", "override": { "city": "" }, "visible": ["city"] },
+    { "id": "BP-04", "override": { "state": "" }, "visible": ["state"] },
+    { "id": "BP-05", "override": { "zipCode": "" }, "visible": ["zipCode"] },
+    { "id": "BP-06", "override": { "phoneNumber": "" }, "visible": ["phoneNumber"] },
+    { "id": "BP-07", "override": { "account": "", "verifyAccount": "" }, "visible": ["accountEmpty", "verifyAccountEmpty"] },
+    { "id": "BP-08", "override": { "account": "12ab", "verifyAccount": "12ab" }, "visible": ["accountInvalid"] },
+    { "id": "BP-09", "override": { "verifyAccount": "99999" }, "visible": ["verifyAccountMismatch"] },
+    { "id": "BP-10", "override": { "amount": "" }, "visible": ["amountEmpty"] },
+    { "id": "BP-11", "override": { "amount": "ten" }, "visible": ["amountInvalid"] }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "description": "Each case blanks (or changes) one registration field and expects one specific error.",
+  "cases": [
+    { "id": "REG-01", "field": "firstName", "value": "", "errorField": "firstName", "message": "First name is required." },
+    { "id": "REG-02", "field": "lastName", "value": "", "errorField": "lastName", "message": "Last name is required." },
+    { "id": "REG-03", "field": "street", "value": "", "errorField": "street", "message": "Address is required." },
+    { "id": "REG-04", "field": "city", "value": "", "errorField": "city", "message": "City is required." },
+    { "id": "REG-05", "field": "state", "value": "", "errorField": "state", "message": "State is required." },
+    { "id": "REG-06", "field": "zipCode", "value": "", "errorField": "zipCode", "message": "Zip Code is required." },
+    { "id": "REG-07", "field": "ssn", "value": "", "errorField": "ssn", "message": "Social Security Number is required." },
+    { "id": "REG-08", "field": "username", "value": "", "errorField": "username", "message": "Username is required." },
+    { "id": "REG-09", "field": "password", "value": "", "errorField": "password", "message": "Password is required." },
+    { "id": "REG-10", "field": "repeatedPassword", "value": "", "errorField": "repeatedPassword", "message": "Password confirmation is required." },
+    { "id": "REG-11", "field": "repeatedPassword", "value": "DoesNotMatch1", "errorField": "repeatedPassword", "message": "Passwords did not match." }
+  ]
+}

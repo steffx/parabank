@@ -1,0 +1,28 @@
+{
+  "description": "axe rule ids that ParaBank is known to violate. Serious/critical violations of any OTHER rule fail the build. Tune this list after your first run: the full axe report is attached to every test.",
+  "knownRules": [
+    "color-contrast",
+    "duplicate-id",
+    "duplicate-id-active",
+    "duplicate-id-aria",
+    "html-has-lang",
+    "image-alt",
+    "label",
+    "select-name",
+    "link-name",
+    "list",
+    "listitem",
+    "landmark-one-main",
+    "region",
+    "page-has-heading-one",
+    "heading-order",
+    "td-has-header",
+    "th-has-data-cells",
+    "empty-table-header",
+    "document-title",
+    "bypass",
+    "frame-title",
+    "input-button-name",
+    "meta-viewport"
+  ]
+}

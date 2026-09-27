@@ -1,0 +1,10 @@
+{
+  "cases": [
+    { "id": "LOGIN-01", "title": "wrong password", "username": "{{worker}}", "password": "wrong-password", "message": "The username and password could not be verified." },
+    { "id": "LOGIN-02", "title": "unknown user", "username": "no_such_user_{{now}}", "password": "whatever", "message": "The username and password could not be verified." },
+    { "id": "LOGIN-03", "title": "empty username", "username": "", "password": "whatever", "message": "Please enter a username and password." },
+    { "id": "LOGIN-04", "title": "empty password", "username": "{{worker}}", "password": "", "message": "Please enter a username and password." },
+    { "id": "LOGIN-05", "title": "SQL injection attempt", "username": "' OR '1'='1", "password": "' OR '1'='1", "message": "The username and password could not be verified." },
+    { "id": "LOGIN-06", "title": "username with different case", "username": "{{WORKER}}", "password": "{{workerPassword}}", "message": "The username and password could not be verified." }
+  ]
+}

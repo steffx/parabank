@@ -1,0 +1,11 @@
+{
+  "cases": [
+    { "id": "FT-01", "search": "byId", "input": ["abc"], "errorLocator": "transactionIdError", "message": "Invalid transaction ID" },
+    { "id": "FT-02", "search": "byId", "input": [""], "errorLocator": "transactionIdError", "message": "Invalid transaction ID" },
+    { "id": "FT-03", "search": "byDate", "input": ["1-1-2024"], "errorLocator": "transactionDateError", "message": "Invalid date format" },
+    { "id": "FT-04", "search": "byDate", "input": ["2024/01/01"], "errorLocator": "transactionDateError", "message": "Invalid date format" },
+    { "id": "FT-05", "search": "byDateRange", "input": ["01-01-2024", "tomorrow"], "errorLocator": "dateRangeError", "message": "Invalid date format" },
+    { "id": "FT-06", "search": "byAmount", "input": ["$$$"], "errorLocator": "amountError", "message": "Invalid amount" },
+    { "id": "FT-07", "search": "byAmount", "input": [""], "errorLocator": "amountError", "message": "Invalid amount" }
+  ]
+}

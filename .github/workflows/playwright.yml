@@ -1,0 +1,70 @@
+name: ParaBank Playwright tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      parabank_target:
+        description: 'ParaBank target'
+        type: choice
+        options: [docker, public]
+        default: docker
+  schedule:
+    - cron: '17 6 * * 1' # every Monday 06:17 UTC
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  parabank:
+    name: ParaBank (UI, REST, SOAP, hybrid, data-driven, a11y)
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    services:
+      parabank:
+        image: parasoft/parabank:latest
+        ports:
+          - 3000:8080
+    env:
+      PARABANK_BASE_URL: ${{ inputs.parabank_target == 'public' && 'https://parabank.parasoft.com/parabank' || 'http://localhost:3000/parabank' }}
+      PARABANK_RESET_DB: ${{ inputs.parabank_target == 'public' && 'false' || 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Wait for ParaBank
+        if: env.PARABANK_RESET_DB == 'true'
+        run: |
+          for i in $(seq 1 60); do
+            curl -fsS "$PARABANK_BASE_URL/index.htm" > /dev/null && exit 0
+            sleep 5
+          done
+          echo "ParaBank did not start" && exit 1
+      - run: npm run typecheck
+      - run: npm test
+      - name: Destructive admin tests (own container only)
+        if: env.PARABANK_RESET_DB == 'true'
+        run: npm run test:destructive -- --project=ui-chromium
+      - name: Generate Allure report
+        if: always()
+        run: npm run allure:generate
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: parabank-playwright-report
+          path: playwright-report
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: parabank-allure-report
+          path: allure-report
+          retention-days: 14

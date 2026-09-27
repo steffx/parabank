@@ -1,0 +1,11 @@
+{
+  "description": "Valid transfer amounts, including boundaries around cents and the opening balance.",
+  "cases": [
+    { "id": "TR-01", "amount": 0.01 },
+    { "id": "TR-02", "amount": 1 },
+    { "id": "TR-03", "amount": 99.99 },
+    { "id": "TR-04", "amount": 100 },
+    { "id": "TR-05", "amount": 250.5 },
+    { "id": "TR-06", "amount": 415.49 }
+  ]
+}
