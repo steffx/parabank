@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   parabank:
-    name: ParaBank (UI, REST, SOAP, hybrid, data-driven, a11y)
+    name: ParaBank (UI, REST, SOAP, hybrid, data-driven, a11y, perf)
     runs-on: ubuntu-latest
     timeout-minutes: 60
     services:
@@ -48,8 +48,14 @@ jobs:
             sleep 5
           done
           echo "ParaBank did not start" && exit 1
-      - run: npm run typecheck
+      - name: Load every spec (syntax and import check)
+        run: npm run check
       - run: npm test
+      - name: Performance budgets
+        # Budgets are still being baselined (test plan 4.4), so a breach is reported but does not fail the build.
+        if: always()
+        continue-on-error: true
+        run: npm run test:perf
       - name: Destructive admin tests (own container only)
         if: env.PARABANK_RESET_DB == 'true'
         run: npm run test:destructive -- --project=ui-chromium

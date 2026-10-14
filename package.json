@@ -2,7 +2,7 @@
   "name": "parabank-playwright",
   "version": "1.0.0",
   "private": true,
-  "description": "End-to-end UI, REST, SOAP, hybrid, data-driven, accessibility and visual tests for Parasoft ParaBank using Playwright + TypeScript",
+  "description": "End-to-end UI, REST, SOAP, hybrid, data-driven, accessibility, performance and visual tests for Parasoft ParaBank using Playwright + JavaScript",
   "scripts": {
     "test": "playwright test --project=ui-chromium --project=api --project=soap --project=data-driven --project=hybrid --project=a11y",
     "test:smoke": "playwright test --grep @smoke --project=ui-chromium --project=api --project=soap",
@@ -14,6 +14,7 @@
     "test:dd": "playwright test --project=data-driven",
     "test:hybrid": "playwright test --project=hybrid",
     "test:a11y": "playwright test --project=a11y",
+    "test:perf": "playwright test --project=perf --workers=1",
     "test:visual": "playwright test --project=visual",
     "test:visual:update": "playwright test --project=visual --update-snapshots",
     "test:destructive": "cross-env PARABANK_DESTRUCTIVE=true playwright test --grep @destructive",
@@ -21,7 +22,7 @@
     "report": "playwright show-report",
     "allure:generate": "allure generate allure-results --output allure-report",
     "allure:open": "allure open allure-report",
-    "typecheck": "tsc --noEmit",
+    "check": "playwright test --list --project=ui-chromium --project=api --project=soap --project=data-driven --project=hybrid --project=a11y --project=perf --project=visual",
     "parabank:docker": "docker run -d --name parabank -p 3000:8080 parasoft/parabank:latest"
   },
   "devDependencies": {
@@ -34,8 +35,7 @@
     "allure-playwright": "^3.3.0",
     "cross-env": "^10.0.0",
     "dotenv": "^17.0.0",
-    "fast-xml-parser": "^5.2.0",
-    "typescript": "^5.9.0"
+    "fast-xml-parser": "^5.2.0"
   },
   "engines": {
     "node": ">=20"
